@@ -9,7 +9,7 @@ import java.util.Scanner;
 /**
  * 1983. 조교의 성적 매기기
  * 
- *  map value 정렬 
+ *  탐색하려는 키의 값 저장 
  */
 public class q1983_v2 {
 

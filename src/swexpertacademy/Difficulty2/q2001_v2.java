@@ -38,12 +38,12 @@ public class q2001_v2 {
 				}
 			}
 			
-//			for(int i=0; i<n+1; i++) {
-//				for(int j=0; j<n+1; j++) {
-//					System.out.printf("%d ",sum[i][j]);
-//				}
-//				System.out.println("\n");
-//			}
+			for(int i=0; i<n+1; i++) {
+				for(int j=0; j<n+1; j++) {
+					System.out.printf("%d ",sum[i][j]);
+				}
+				System.out.println("\n");
+			}
 			
 			int ans=0;
 			// 누적합 최대 구하기 

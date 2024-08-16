@@ -26,10 +26,10 @@ public class q1859 {
 			int n = sc.nextInt();
 			
 			List<Integer> nlist = new ArrayList<Integer>();
-            for(int j=0; j<n; j++) nlist.add(sc.nextInt());
+	        for(int j=0; j<n; j++) nlist.add(sc.nextInt());
 			
-            long ans = 0; // ** int > long 정답 통과
-            
+	        long ans = 0; // ** int > long 정답 통과
+	        
 			int max = nlist.get(n-1); // 뒤에서부터 순회(mx가 판매 가격)
 			for(int j=n-2; j>=0; j--) {
 				if(max>nlist.get(j)) ans+= (max-nlist.get(j)); // 판매 가격이 아직 더 높을 때 그날 구매하여 max 가격으로 판매, max(판매가격)-nlist[j](현재 구매가격)
