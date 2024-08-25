@@ -1,4 +1,4 @@
-package DFSnBFS;
+package baekjoon.DFSnBFS;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * 24479. 알고리즘 수업 - 깊이 우선 탐색 1
  */
-public class q24479 {
+public class q24479_dfs {
 	
 	static int n, m, r;
 	static int cnt = 1;

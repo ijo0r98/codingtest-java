@@ -1,4 +1,4 @@
-package DFSnBFS;
+package baekjoon.DFSnBFS;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,16 +7,16 @@ import java.util.Queue;
 import java.util.Scanner;
 
 /**
- * 24445. 알고리즘 수업 - 너부 우선 탐색 2 
+ * 24444. 알고리즘 수업 - 너비 우선 탐색 1 
  */
-public class q24445 {
+public class q24444_bfs {
 	
 	static int n, m, r;
 	static int cnt = 1;
 	static ArrayList<ArrayList<Integer>> graph = new ArrayList<ArrayList<Integer>>();
 	static boolean[] visited;
 	static int[] result; 
-	
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		n = sc.nextInt();
@@ -40,7 +40,7 @@ public class q24445 {
 		}
 		
 		for(int i=1; i<=n; i++) {
-			Collections.sort(graph.get(i), Collections.reverseOrder());
+			Collections.sort(graph.get(i));
 		}
 		
 		bfs(r);
@@ -53,20 +53,22 @@ public class q24445 {
 		result[r] = cnt;
 		cnt++;
 		
+		// Queue 자료형 활용 
 		Queue<Integer> queue = new LinkedList<Integer>();
 		queue.add(r);
 		while(!queue.isEmpty()) {
-			int now = queue.poll();
+			int now = queue.poll(); 
 			
+			// 해당 노드와 간선으로 연결된 모든 노드 탐색 
 			for(Integer v: graph.get(now)) {
-				if(!visited[v]) {
+				// 선입선출로 특정 노드에 연결된 모든 노드 먼저 탐색 후 다음 노드(간선)로 이동 
+				if(!visited[v])  {
 					queue.add(v);
-					visited[v]=true;
-					result[v]=cnt;
+					visited[v] = true;
+					result[v] = cnt;
 					cnt++;
 				}
 			}
 		}
 	}
-
 }
