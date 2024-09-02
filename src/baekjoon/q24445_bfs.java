@@ -1,33 +1,37 @@
-package baekjoon.DFSnBFS;
+package baekjoon;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
 /**
- * 1260. DFS와 BFS 
+ * 24445. 알고리즘 수업 - 너비 우선 탐색 2 
  */
-public class q1260 {
+public class q24445_bfs {
 	
 	static int n, m, r;
+	static int cnt = 1;
 	static ArrayList<ArrayList<Integer>> graph = new ArrayList<ArrayList<Integer>>();
 	static boolean[] visited;
-
+	static int[] result; 
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		
 		n = sc.nextInt();
 		m = sc.nextInt();
 		r = sc.nextInt();
 		
 		visited = new boolean[n+1];
+		result = new int[n+1];
+		
+		// 그래프 노드 수 만큼 초기화 
 		for(int i=0; i<=n; i++) {
 			graph.add(new ArrayList<Integer>());
 		}
 		
+		// 그래프 간선 정보 저장 (양방향) 
 		for(int i=0; i<m; i++) {
 			int start = sc.nextInt();
 			int end = sc.nextInt();
@@ -35,45 +39,34 @@ public class q1260 {
 			graph.get(end).add(start);
 		}
 		
-		// 정점이 작은 것부터 방문 > 오름차순 
-		for(int i=0; i<=n; i++) Collections.sort(graph.get(i));
-		
-		dfs(r);
-		
-		System.out.println();
-		for(int i=0; i<=n; i++) visited[i]=false;
+		for(int i=1; i<=n; i++) {
+			Collections.sort(graph.get(i), Collections.reverseOrder());
+		}
 		
 		bfs(r);
 		
-	}
-	
-	static void dfs(int r) {
-		System.out.print(r+" ");
-		visited[r]=true;
-		
-		for(Integer v: graph.get(r)) {
-			if(!visited[v]) {
-				dfs(v);
-			}
-		}
-		return;
+		for(int i=1; i<=n; i++) System.out.println(result[i]);
 	}
 	
 	static void bfs(int r) {
-		System.out.print(r+" ");
-		visited[r]=true;
+		visited[r] = true;
+		result[r] = cnt;
+		cnt++;
 		
 		Queue<Integer> queue = new LinkedList<Integer>();
 		queue.add(r);
 		while(!queue.isEmpty()) {
 			int now = queue.poll();
-			for(Integer v : graph.get(now)) {
+			
+			for(Integer v: graph.get(now)) {
 				if(!visited[v]) {
-					System.out.print(v+" ");
 					queue.add(v);
 					visited[v]=true;
+					result[v]=cnt;
+					cnt++;
 				}
 			}
 		}
 	}
+
 }

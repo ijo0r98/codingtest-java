@@ -1,12 +1,14 @@
-package baekjoon.DFSnBFS;
+package baekjoon;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 /**
- * 2606. 바이러스 (dfs)
+ * 2606. 바이러스 (bfs) 
  */
-public class q2606_dfs {
+public class q2606_bfs {
 	
 	static ArrayList<ArrayList<Integer>> graph = new ArrayList<ArrayList<Integer>>();
 	static boolean[] visited;
@@ -29,7 +31,7 @@ public class q2606_dfs {
 			graph.get(end).add(start);
 		}
 		
-		dfs(1);
+		bfs(1);
 		
 		for(int i=2; i<=n; i++) {
 			if(visited[i]) {
@@ -37,20 +39,22 @@ public class q2606_dfs {
 			}
 		}
 			
-		
 		System.out.println(ans);
-		
 	}
 	
-	static void dfs(int r) {
+	static void bfs(int r) {
 		visited[r] = true;
 		
-		for(Integer v: graph.get(r)) {
-			if(!visited[v]) {
-				dfs(v);
+		Queue<Integer> queue = new LinkedList<Integer>();
+		queue.add(r);
+		while(!queue.isEmpty()) {
+			int now = queue.poll();
+			for(Integer v : graph.get(now)) {
+				if(!visited[v]) {
+					visited[v]=true;
+					queue.add(v);	
+				}
 			}
 		}
-		
-		return;
 	}
 }

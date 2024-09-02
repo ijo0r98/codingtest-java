@@ -1,9 +1,9 @@
-package baekjoon.Lv1;
+package baekjoon;
 
 import java.util.Scanner;
 
 // 나머지
-public class Q10430 {
+public class q10430 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt();
