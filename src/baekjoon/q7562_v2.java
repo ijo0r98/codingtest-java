@@ -8,7 +8,7 @@ import java.util.Scanner;
  * 7562. 나이트의 이동 
  * 최단거리 - BFS
  */
-public class q7562 {
+public class q7562_v2 {
 	
 	static int t, n;
 	static class Point{
@@ -26,6 +26,7 @@ public class q7562 {
 	static Point start, end;
 	static int count;
 	
+	static int[][] arr;	
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -36,6 +37,7 @@ public class q7562 {
 			n = sc.nextInt(); // 한 판의 길이
 			
 			visited = new boolean[n][n];
+			arr = new int[n][n];
 			start = new Point();
 			end = new Point();
 			count = 0;
@@ -46,14 +48,14 @@ public class q7562 {
 			end.x = sc.nextInt();
 			end.y = sc.nextInt();
 			
-//			bfs(start);
+			bfs(start);
 			
-			System.out.println(bfs(start));
+			System.out.println(arr[end.x][end.y]);
 		}
 		
 	}
 	
-	static int bfs(Point start) {
+	static void bfs(Point start) {
 		visited[start.x][start.y]=true;
 		
 		Queue<Point> queue = new LinkedList<Point>();
@@ -61,24 +63,22 @@ public class q7562 {
 		
 		while(!queue.isEmpty()) {
 			Point now = queue.poll();
-			System.out.printf("%d %d\n", now.x, now.y);
-			if(now.x==end.x && now.y==end.y) break;
 			
 			for(int i=0; i<8; i++) {
 				int mx = moved[i][0] + now.x;
 				int my = moved[i][1] + now.y;
-				if(mx >= n || mx < 0 || my >= n || my <0) break;
-				if(mx == end.x && my == end.y) {
-					return count;
-				}
-				if(!visited[mx][my]) {
+				if(isIn(new Point(mx, my)) && !visited[mx][my]) {
 					queue.add(new Point(mx, my));
 					visited[mx][my]=true;
-					count++;
+					arr[mx][my] = arr[now.x][now.y]+1;
 				}
 			}
 		}
-		
-		return count;
+	}
+	
+	static boolean isIn(Point m) {
+		if(m.x >= n || m.x < 0 || m.y >= n || m.y <0) return false;
+		else return true;
+	
 	}
 }
