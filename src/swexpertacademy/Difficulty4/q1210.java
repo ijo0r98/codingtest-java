@@ -1,4 +1,4 @@
-package swexpertacademy.Difficulty3;
+package swexpertacademy.Difficulty4;
 
 import java.util.Scanner;
 

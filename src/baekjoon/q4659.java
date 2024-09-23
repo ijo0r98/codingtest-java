@@ -13,9 +13,9 @@ public class q4659 {
 		
 		while(true) {
 			s = sc.next();
-			if(s.equals("end")) break;
-			
-			if(s.contains(""))
+//			if(s.equals("end")) break;
+//			
+//			if(s.contains(""))
 		}
 	}
 }
